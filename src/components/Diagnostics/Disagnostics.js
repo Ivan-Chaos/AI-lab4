@@ -52,6 +52,24 @@ const Diagnostics = () => {
         photosensitivity: "Світлобоязнь"
     }
 
+    const reverse_mapping = {
+        "Температура" : "temperature",
+        "Нежить" : "snots",
+        "Кашель" : "cough",
+        "Біль горла" : "throat_ache",
+        "Збільшення підчелюсних залоз" : "gland",
+        "Віддих" : "suffocation",
+        "Різна  висипка" : "rash",
+        "Тошнота/рвота" : "vomiting",
+        "Опухлість завушних залоз": "ears_swelling",
+        "Болі в животі" : "stomach_ache",
+        "Розлади кишківника" : "intestants_disorder",
+        "Пожовтіння шкіри" : "skin_yellowing",
+        "Головний біль" : "headache",
+        "Озноб": "chills",
+        "Світлобоязнь" : "chills"
+    }
+
     useEffect(() => {
         getDiseases().then(disease_list => {
             setDiseases(disease_list);
@@ -71,6 +89,7 @@ const Diagnostics = () => {
             if (taken_at) {
                 setIsDiagnosed(true);
                 setDiagnosis(userInfo.diagnostics.find(element => element.taken_at === taken_at));
+                setSymptoms(userInfo.diagnostics.find(element => element.taken_at === taken_at).userSymptoms.map(e=>reverse_mapping[e]));
             }
         }
     }, [userInfo])
@@ -103,6 +122,7 @@ const Diagnostics = () => {
 
         setDiagnosis({
             ...diagnosis,
+            userSymptoms: symptoms.map(symptom=>mapping[symptom]),
             probabilites: probabilites.filter(probability => probability.probability > 0).sort((a, b) => b.probability - a.probability),
             taken_at: new Date(Date.now()).toString()
         })
@@ -111,6 +131,7 @@ const Diagnostics = () => {
 
         tUserInfo.diagnostics.push({
             ...diagnosis,
+            userSymptoms: symptoms.map(symptom=>mapping[symptom]),
             probabilites: probabilites.filter(probability => probability.probability > 0).sort((a, b) => b.probability - a.probability),
             taken_at: new Date(Date.now()).toString()
         });
