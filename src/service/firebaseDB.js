@@ -251,3 +251,7 @@ export async function getUserInfo(email){
 export async function addUserDisease(email, userInfo){
     await setDoc(doc(db, 'users', email), userInfo);
 }
+
+export async function diseaseModel(newModel){
+    await setDoc(doc(db, 'diseases', 'disease_list'), {list: newModel});
+}

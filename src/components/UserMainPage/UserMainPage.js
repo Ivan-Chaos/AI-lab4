@@ -74,7 +74,7 @@ const UserMainPage = () => {
                 userInfo.diagnostics.map(element => {
                     debugger;
                     return <><div className={classes.diagnosticDiv}>
-                        <h2>Діагностика від {(new Date(element.taken_at)).toLocaleDateString("en-GB")}</h2>
+                        <h2 style={{fontWeight: 400}}>Діагностика від <b>{(new Date(element.taken_at)).toLocaleString("en-GB")}</b></h2>
 
                         <div>
                             <Button variant="contained" onClick={()=>{

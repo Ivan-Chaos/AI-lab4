@@ -18,7 +18,7 @@ const Diagnostics = () => {
 
     const [userInfo, setUserInfo] = useState(null);
 
-    const taken_at = useSelector(state=>state.diagnosis.taken_at);
+    const taken_at = useSelector(state => state.diagnosis.taken_at);
 
     const navigate = useNavigate();
 
@@ -66,11 +66,11 @@ const Diagnostics = () => {
 
     }, [user])
 
-    useEffect(()=>{
-        if(userInfo){
-            if(taken_at){
+    useEffect(() => {
+        if (userInfo) {
+            if (taken_at) {
                 setIsDiagnosed(true);
-                setDiagnosis(userInfo.diagnostics.find(element=>element.taken_at===taken_at));
+                setDiagnosis(userInfo.diagnostics.find(element => element.taken_at === taken_at));
             }
         }
     }, [userInfo])
@@ -188,13 +188,46 @@ const Diagnostics = () => {
         }
 
         {
-            diagnosis.probabilites.filter(disease => disease.probability == 100).length !== 1 && isDiagnosed &&
+            diagnosis.probabilites.filter(disease => disease.probability == 100).length !== 1
+            && diagnosis.probabilites.filter(disease => disease.probability == 100).length !== diseases.length
+            && isDiagnosed &&
             <>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/309/389/982.png"></img>
                 </div>
 
                 <h1>Ми не можемо вам поставити чіткий діагноз, але ось що з вами може бути не так:</h1>
+
+                {
+                    diagnosis.probabilites.map(disease => {
+                        return (
+                            <>
+                                <h1><span style={{ color: '#c98300' }}> {disease.name}</span> з ймовірністю {disease.probability} %</h1>
+                                <h2>Симптоми</h2>
+                                <ul>
+                                    {disease?.symptom_names?.map(name =>
+                                        <li style={{ color: symptoms.findIndex(symptom => mapping[symptom] == name) >= 0 ? '#2cf71e' : 'black' }}>{name}</li>
+                                    )}
+                                </ul>
+
+                                <p>{disease.description}</p>
+                                <hr />
+                            </>
+                        )
+                    })
+                }
+
+            </>
+        }
+
+
+        { diagnosis.probabilites.filter(disease => disease.probability == 100).length === diseases.length && isDiagnosed &&
+            <>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <img src="https://media.istockphoto.com/photos/stairs-leading-up-to-heavenly-sky-toward-the-light-picture-id954305374?k=20&m=954305374&s=612x612&w=0&h=rV4oyHOtL547zWbGtTTwT8XCfEfWZkJorI7_ABGIiMM="></img>
+                </div>
+
+                <h1>Вічная пам'ять</h1>
 
                 {
                     diagnosis.probabilites.map(disease => {
