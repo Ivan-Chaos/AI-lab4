@@ -1,7 +1,6 @@
 import Diagnostics from "./components/Diagnostics/Disagnostics";
 import DiseasesModel from "./components/DiseasesModel/DiseasesModel";
 import LoginPage from "./components/LoginPage/LoginPage";
-import Quiz from "./components/Quiz/Quiz";
 import UserMainPage from "./components/UserMainPage/UserMainPage";
 
 export const routes = [

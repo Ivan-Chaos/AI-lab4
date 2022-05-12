@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import quizSlice from './slices/quizSlice'
+import diagnosisSlice from './slices/diagnosisSlice'
 
 export default configureStore({
     reducer: { 
-        currentQuiz: quizSlice  
+        diagnosis: diagnosisSlice
     },
 })

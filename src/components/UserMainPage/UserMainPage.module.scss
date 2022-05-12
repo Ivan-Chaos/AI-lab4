@@ -18,6 +18,10 @@
                 font-weight: 500;
             }
         }
+
+        h2{
+            font-weight: 400 !important;
+        }
     }
 
     main{
@@ -26,6 +30,13 @@
         
         h1{
             font-weight: 300;
+        }
+
+        .diagnosticDiv{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid gray;
         }
 
         section{
