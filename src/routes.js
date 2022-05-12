@@ -1,3 +1,4 @@
+import Diagnostics from "./components/Diagnostics/Disagnostics";
 import DiseasesModel from "./components/DiseasesModel/DiseasesModel";
 import LoginPage from "./components/LoginPage/LoginPage";
 import Quiz from "./components/Quiz/Quiz";
@@ -12,9 +13,9 @@ export const routes = [
     },
 
     {
-        path: '/quiz',
+        path: '/diagnostics',
         exact: true,
-        element: <Quiz />,
+        element: <Diagnostics />,
         isProtected: true
     },
 

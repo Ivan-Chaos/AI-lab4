@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase-config';
-import { addAnswers, getDiseases, getProgress, getQuestions, writeDiseases, writeQuestions } from '../../service/firebaseDB'
+import { addAnswers, getDiseases, getProgress, getQuestions, getUserDeseases, writeDiseases, writeQuestions } from '../../service/firebaseDB'
 import { setQuizQuestions } from '../../store/slices/quizSlice';
 
 import classes from './UserMainPage.module.scss'
@@ -12,6 +12,8 @@ import classes from './UserMainPage.module.scss'
 const UserMainPage = () => {
 
     const [user, setUser] = useState(null);
+
+    const [userDiseases, setUserDiseases] = useState([]);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,9 +25,11 @@ const UserMainPage = () => {
 
 
     useEffect(() => {
-        
-        
-    }, []);
+        if(user)
+            getUserDeseases(user.email).then(diseases=>{
+                setUserDiseases([...diseases]);
+            });
+    }, [user]);
 
 
 
@@ -36,7 +40,7 @@ const UserMainPage = () => {
         <main>
             <h1>Історія діагностик</h1>
 
-            <button>Пройти діагностику</button>
+            <button onClick={()=>navigate('/diagnostics')}>Пройти діагностику</button>
 
             <button onClick={()=>{
                 writeDiseases();

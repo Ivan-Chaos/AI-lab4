@@ -219,7 +219,14 @@ export async function createUser(email, dob, gender){
 }
 
 export async function getUserDeseases(email){
-
+    try {
+        const docRef = doc(db, "users", email);
+        const docSnap = await getDoc(docRef);
+        return docSnap.data().diagnostics;
+    }
+    catch (error) {
+        console.log("🚀 ~ file: firebaseDB.js ~ line 202 ~ getDiseases ~ error", error)
+    }
 }
 
 export async function getQuestions() {
