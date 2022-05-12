@@ -210,6 +210,18 @@ export async function getDiseases() {
     }
 }
 
+export async function createUser(email, dob, gender){
+    setDoc(doc(db, 'users', email), {
+        dob: dob,
+        gender: gender, 
+        diagnostics: []
+    })
+}
+
+export async function getUserDeseases(email){
+
+}
+
 export async function getQuestions() {
     try {
         const questionsCollection = collection(db, 'questions');

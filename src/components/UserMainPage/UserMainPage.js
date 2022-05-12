@@ -23,9 +23,8 @@ const UserMainPage = () => {
 
 
     useEffect(() => {
-        getDiseases().then(data=>{
-            debugger;
-        });
+        
+        
     }, []);
 
 
@@ -35,7 +34,9 @@ const UserMainPage = () => {
             <h1>Ласкаво просимо, <span>{user?.email}</span></h1>
         </header>
         <main>
-            <h1>Почуваєтесь лихо? </h1>
+            <h1>Історія діагностик</h1>
+
+            <button>Пройти діагностику</button>
 
             <button onClick={()=>{
                 writeDiseases();
